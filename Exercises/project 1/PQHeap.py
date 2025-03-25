@@ -55,5 +55,30 @@ def build_min_heap(A):
         min_heapify(A,i)
 build_min_heap(A)
 print(A)
-def insert(A,e):
-    pass
+
+def min_heap_min(A):
+    return A[0]
+
+def min_heap_extract_min(A):
+    minimum = min_heap_min(A)
+    print("length of array", len(A))
+    #remove last element and make it the first(shift all elements would take longer) 
+    A[0] = A.pop() #
+    print("new length of array", len(A))
+    #Run min heap from the top
+    min_heapify(A,0)
+    return minimum
+#print(min_heap_extract_min(A))
+#print(A)
+def min_heap_insert(A,e):
+    A.append(e)
+    i = len(A)-1
+
+    # while not the root and parant bigger than current node
+    while i > 0 and A[parent(i)] > A[i]:
+        A[i], A[parent(i)] = A[parent(i)], A[i]
+        i = parent(i)
+
+print(A)
+min_heap_insert(A,4)
+print(A)
