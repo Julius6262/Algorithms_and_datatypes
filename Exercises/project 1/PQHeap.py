@@ -32,7 +32,6 @@ class Heap():
             smallest = r
         # if the smallest is not the inserted node, we made a change and neep to heapify again
         if smallest != i:
-            print("if smallest isn't index", i)
             A[i], A[smallest] = A[smallest], A[i]
             self.min_heapify(A,smallest)
 
@@ -49,13 +48,19 @@ class Heap():
 
 
     def min_heap_extract_min(self,A):
+        if len(A) <1:  # Prevent extracting from an empty heap
+            print("The que is empty")
+            return
         minimum = self.min_heap_min(A)
-        #remove last element and make it the first(shift all elements would take longer) 
-        A[0] = A.pop() #
-        #Run min heap from the top
-        self.min_heapify(A,0)
-        return minimum
 
+        if len(A) == 1:
+            A.pop()
+        else:
+            #remove last element and make it the first(shift all elements would take longer) 
+            A[0] = A.pop()  #
+            #Run min heap from the top
+            self.min_heapify(A,0)
+        return minimum
 
     def min_heap_insert(self,A,e):
         A.append(e)

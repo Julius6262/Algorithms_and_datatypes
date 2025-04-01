@@ -1,20 +1,31 @@
 import sys
-from PQHeap import Heap
+import PQHeap
 
-def pq_sort():
-    H = Heap()  # Create an instance of the Heap class
-    pq = H.createEmptyPQ()  # Get an empty list
-    pq = [0]
-    for line in sys.stdin:
-        try:
-            number = int(line.strip())
-            H.min_heap_insert(pq, number)  # Call the method on the instance H
-        except ValueError:
-            pass
+pq = PQHeap.createEmptyPQ()
 
-    while pq:
-        minimum = H.min_heap_extract_min(pq)
-        print(minimum)
+n = 0
+for line in sys.stdin:
+    PQHeap.insert(pq,int(line))
+    n = n+1
 
-if __name__ == "__main__":
-    pq_sort()
+print()
+while n > 0:
+    print(PQHeap.extractMin(pq))
+    n = n-1
+
+"""import sys
+from PQHeap1 import Heap
+
+PQHeap = Heap()
+
+pq = PQHeap.createEmptyPQ()
+
+n = 0
+for line in sys.stdin:
+    PQHeap.min_heap_insert(pq,int(line))
+    n = n+1
+
+print()
+while n > 0:
+    print(PQHeap.min_heap_extract_min(pq))
+    n = n-1"""
